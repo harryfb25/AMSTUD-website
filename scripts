@@ -1,0 +1,44 @@
+// app.js
+window.addEventListener("DOMContentLoaded", () => {
+  // Audio setup
+  const audio = document.getElementById("ambient-audio");
+  audio.volume = 0.2;
+  audio.play().catch(() => {});
+
+  // Canvas cursor setup
+  const canvas = document.getElementById("cursor-canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function drawCursor() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(mouseX, mouseY, 10, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+    ctx.fill();
+    requestAnimationFrame(drawCursor);
+  }
+
+  drawCursor();
+
+  // Quote carousel (simple version)
+  const quotes = [
+    "I drink your milkshake!",
+    "You can’t repeat the past? Why of course you can!",
+    "The jungle is dark but full of diamonds.",
+    "You don’t get to 500 million friends without making a few enemies."
+  ];
+  let index = 0;
+  const quoteEl = document.getElementById("quote-carousel");
+  setInterval(() => {
+    index = (index + 1) % quotes.length;
+    quoteEl.textContent = quotes[index];
+  }, 4000);
+});
