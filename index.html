@@ -1,69 +1,27 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Great American Dream</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="custom.css">
-  <script defer src="app.js"></script>
+  <link rel="stylesheet" href="styles/custom.css">
+  <script defer src="scripts/app.js"></script>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="fade-in">
   <canvas id="cursor-canvas"></canvas>
-  <audio id="ambient-audio" loop autoplay src="background.mp3"></audio>
+  <audio id="ambient-audio" src="assets/audio/background.mp3" autoplay loop muted></audio>
 
-  <!-- Hero Section -->
-  <section class="h-screen flex flex-col items-center justify-center text-center px-4">
-    <h1 class="text-5xl font-bold mb-4">The Great American Dream</h1>
-    <p class="text-lg text-gray-400 italic">“I drink your milkshake!”</p>
-    <div class="mt-10 text-sm text-gray-500 animate-bounce">↓ Scroll down</div>
+  <section class="hero">
+    <h1>The Great American Dream</h1>
   </section>
 
-  <!-- Scroll Section -->
-  <section class="min-h-[300vh] bg-gradient-to-b from-gray-900 to-black px-8 py-20">
-    <div class="sticky top-20 text-xl text-white font-semibold">
-      Scroll to explore the American psyche...
-    </div>
-
-    <!-- Visible Scroll Content -->
-    <div class="mt-40 space-y-32">
-      <div class="opacity-0 transition-opacity duration-700 fade-in-on-scroll">
-        <h2 class="text-3xl font-bold">The Illusion of Wealth</h2>
-        <p class="text-gray-300 max-w-xl mt-4">
-          Characters chase money and success — but at what cost? Explore how Gatsby’s green light mirrors Zuckerberg’s algorithm.
-        </p>
-      </div>
-
-      <div class="opacity-0 transition-opacity duration-700 fade-in-on-scroll">
-        <h2 class="text-3xl font-bold">Legacy & Power</h2>
-        <p class="text-gray-300 max-w-xl mt-4">
-          From Daniel Plainview’s oil to Willy Loman’s sales, each man builds — and breaks — under the weight of the American Dream.
-        </p>
-      </div>
-
-      <div class="opacity-0 transition-opacity duration-700 fade-in-on-scroll">
-        <h2 class="text-3xl font-bold">The Modern Psyche</h2>
-        <p class="text-gray-300 max-w-xl mt-4">
-          Is the Dream still alive, or has it morphed into something more sinister? Scroll deeper to find out.
-        </p>
-      </div>
-    </div>
+  <section class="carousel-container">
+    <div id="quote-carousel">"I drink your milkshake!"</div>
   </section>
 
-  <script>
-    // Fade-in effect on scroll
-    const faders = document.querySelectorAll('.fade-in-on-scroll');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    faders.forEach(el => observer.observe(el));
-  </script>
+  <section class="scroll-section">
+    <div class="sticky-text">Scroll to explore the American psyche...</div>
+  </section>
 </body>
 </html>
